@@ -1,0 +1,76 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Birthday Surprise ✨</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="index.html">✦ Little Moments</a>
+    <span class="nav-tag">MADE WITH LOVE ♥</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">✧ TODAY IS YOUR SPECIAL DAY ✧</p>
+        <h1>Make a Wish.<br><span>Feel the Magic.</span></h1>
+        <p class="description">A little universe of happiness, beautiful wishes and magical surprises — created just for you.</p>
+        <div class="name-card">♥ <span id="recipient">Dear Friend</span> ✨</div>
+        <p class="wish">May your life always sparkle with love and laughter.</p>
+        <a class="btn" id="openSurprise" href="surprise.html">Open Your Surprise <span>↗</span></a>
+      </div>
+
+      <div class="cake-scene">
+        <div class="orbit orbit1"></div>
+        <div class="orbit orbit2"></div>
+        <div class="balloon pink"></div>
+        <div class="balloon yellow"></div>
+        <div class="balloon blue"></div>
+        <span class="star star1">✦</span><span class="star star2">✧</span>
+        <div class="plate"></div>
+        <div class="cake">
+          <div class="candle"><div class="flame"></div></div>
+          <div class="icing"></div>
+          <div class="cake-top"></div>
+          <div class="cake-body"><span>HAPPY BIRTHDAY</span><b>♥</b></div>
+        </div>
+        <div class="cake-caption">A LITTLE EXTRA MAGIC ✧</div>
+      </div>
+    </section>
+
+    <section class="surprises">
+      <p class="eyebrow">CHOOSE YOUR LITTLE ADVENTURE</p>
+      <h2>Something lovely <span>is waiting.</span></h2>
+      <div class="cards">
+        <a class="card rose" href="surprise.html?gift=message">
+          <span class="card-icon">💌</span><small>01 / A NOTE</small>
+          <strong>A Note From The Heart</strong><p>Open a little message made with love.</p><b class="arrow">↗</b>
+        </a>
+        <a class="card gold" href="surprise.html?gift=wish">
+          <span class="card-icon">🌟</span><small>02 / A WISH</small>
+          <strong>Make A Wish</strong><p>Let a little magic find its way to you.</p><b class="arrow">↗</b>
+        </a>
+        <a class="card aqua" href="surprise.html?gift=memory">
+          <span class="card-icon">🎁</span><small>03 / MAGIC</small>
+          <strong>Unwrap The Joy</strong><p>There are more surprises to discover.</p><b class="arrow">↗</b>
+        </a>
+      </div>
+    </section>
+
+    <section class="music">
+      <div class="music-icon">♫</div>
+      <div class="music-text"><strong>Your Birthday Soundtrack</strong><small id="musicStatus">Play a little birthday music 🎶</small></div>
+      <button id="musicToggle" class="music-btn" type="button">▶ Play Music</button>
+      <audio id="birthdayAudio" src="assets/audio/happy-birthday.mp3" loop preload="none"></audio>
+    </section>
+    <p class="audio-note">Add your happy-birthday.mp3 file inside assets/audio to enable music.</p>
+  </main>
+  <footer>MADE WITH ♥ AND A LITTLE BIT OF MAGIC</footer>
+</body>
+</html>
+```

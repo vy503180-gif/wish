@@ -1,0 +1,476 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magical Birthday Surprise 🎁</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: "Segoe UI", sans-serif;
+      color: white;
+      background:
+        radial-gradient(ellipse at 15% 20%, #7928ca 0%, transparent 40%),
+        radial-gradient(ellipse at 85% 70%, #e91e63 0%, transparent 38%),
+        linear-gradient(135deg, #10002b, #240046, #3c096c);
+    }
+
+    button, a { font: inherit; }
+
+    .glow {
+      position: fixed;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .35;
+      pointer-events: none;
+      animation: glowMove 8s infinite alternate ease-in-out;
+    }
+
+    .glow.one { background: #ff4dca; top: 10%; left: -100px; }
+    .glow.two { background: #4cc9f0; bottom: 0; right: -100px; }
+
+    @keyframes glowMove {
+      to { transform: translate(100px, -60px) scale(1.2); }
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 7%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 19px;
+      color: #ffd166;
+    }
+
+    .home {
+      color: white;
+      text-decoration: none;
+      padding: 10px 17px;
+      border: 1px solid #ffffff55;
+      border-radius: 25px;
+      background: #ffffff12;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 30px 18px 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #ffffff15;
+      border: 1px solid #ffffff30;
+      border-radius: 30px;
+      padding: 9px 17px;
+      color: #ffe29a;
+      letter-spacing: 1px;
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: clamp(35px, 6vw, 68px);
+      line-height: 1.12;
+      margin: 22px auto 12px;
+      max-width: 850px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #fff, #ffb3e6, #ffd166);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 4px 22px #ff45bb50);
+    }
+
+    .subtitle {
+      color: #eadcfb;
+      font-size: 17px;
+      line-height: 1.7;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .recipient {
+      margin: 22px auto 0;
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #ffffff20, #ffffff08);
+      border: 1px solid #ffffff35;
+      box-shadow: 0 8px 30px #0002;
+      font-size: 18px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 42px 0 8px;
+      font-size: 25px;
+    }
+
+    .hint {
+      text-align: center;
+      color: #e5d5fa;
+      margin: 0 15px 20px;
+      font-size: 14px;
+    }
+
+    .gift-stage {
+      position: relative;
+      width: min(1000px, 94%);
+      min-height: 340px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid #ffffff30;
+      background: linear-gradient(135deg, #ffffff12, #ffffff05);
+      box-shadow: 0 20px 65px #08001455, inset 0 0 35px #ffffff08;
+    }
+
+    .gift-stage::before {
+      content: "✦        ✧          ✦       ✧       ✦";
+      position: absolute;
+      inset: 30px 0 auto;
+      color: #ffe29a;
+      text-align: center;
+      font-size: 25px;
+      letter-spacing: 18px;
+      opacity: .7;
+      pointer-events: none;
+    }
+
+    .gift {
+      position: absolute;
+      top: -100px;
+      width: 76px;
+      height: 76px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      z-index: 1;
+      animation: fallGift var(--duration, 7s) linear forwards;
+      filter: drop-shadow(0 10px 12px #0005);
+      touch-action: manipulation;
+    }
+
+    .gift-box {
+      position: relative;
+      display: block;
+      width: 62px;
+      height: 48px;
+      margin: 23px auto 0;
+      border-radius: 5px;
+      background: var(--gift-color, #ff477e);
+      box-shadow: inset -8px -5px #00000018, inset 4px 3px #ffffff35;
+      transition: transform .25s;
+    }
+
+    .gift:hover .gift-box {
+      transform: scale(1.16) rotate(-8deg);
+    }
+
+    .gift-box::before {
+      content: "";
+      position: absolute;
+      top: -12px;
+      left: -5px;
+      width: 72px;
+      height: 15px;
+      border-radius: 4px;
+      background: inherit;
+      box-shadow: inset 0 3px #ffffff45;
+    }
+
+    .gift-box::after {
+      content: "";
+      position: absolute;
+      top: -12px;
+      left: 25px;
+      width: 12px;
+      height: 60px;
+      background: #ffd166;
+      border-radius: 2px;
+    }
+
+    .bow {
+      position: absolute;
+      width: 20px;
+      height: 13px;
+      top: -23px;
+      left: 17px;
+      border: 5px solid #ffd166;
+      border-radius: 50% 50% 0 50%;
+      transform: rotate(25deg);
+      z-index: 2;
+    }
+
+    .bow::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 13px;
+      top: -5px;
+      left: 8px;
+      border: 5px solid #ffd166;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-50deg);
+    }
+
+    @keyframes fallGift {
+      0% { transform: translateY(0) rotate(-12deg); }
+      25% { transform: translateY(100px) rotate(12deg); }
+      50% { transform: translateY(190px) rotate(-8deg); }
+      75% { transform: translateY(280px) rotate(12deg); }
+      100% { transform: translateY(430px) rotate(25deg); opacity: .15; }
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 25px 15px 35px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 30px;
+      padding: 14px 23px;
+      color: #321044;
+      background: linear-gradient(135deg, #ffe29a, #ffb6dc);
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 7px 25px #ff70c550;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 10px 30px #ff70c580;
+    }
+
+    .btn.secondary {
+      background: #ffffff12;
+      color: white;
+      border: 1px solid #ffffff45;
+      box-shadow: none;
+    }
+
+    .cake-card {
+      width: min(650px, 92%);
+      margin: 20px auto 50px;
+      padding: 28px 20px;
+      text-align: center;
+      border-radius: 26px;
+      border: 1px solid #ffffff30;
+      background: linear-gradient(135deg, #ffffff17, #ffffff07);
+      box-shadow: 0 15px 45px #0002;
+    }
+
+    .cake {
+      font-size: 90px;
+      display: inline-block;
+      filter: drop-shadow(0 10px 12px #ff70c555);
+      animation: cakeFloat 2.5s infinite ease-in-out;
+    }
+
+    @keyframes cakeFloat {
+      50% { transform: translateY(-9px) rotate(2deg); }
+    }
+
+    .cake-card h2 { margin-bottom: 7px; }
+    .cake-card p { color: #e8dafa; line-height: 1.6; }
+
+    .letter {
+      display: none;
+      margin: 20px auto 0;
+      padding: 20px;
+      max-width: 480px;
+      border-radius: 18px;
+      background: #fff0f7;
+      color: #54205e;
+      line-height: 1.8;
+      text-align: left;
+      animation: appear .4s ease;
+    }
+
+    .letter.show { display: block; }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(15px) scale(.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .footer {
+      text-align: center;
+      color: #cdb9e7;
+      padding: 20px;
+      font-size: 13px;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: #100019cc;
+      backdrop-filter: blur(10px);
+    }
+
+    .modal.show { display: grid; }
+
+    .modal-card {
+      width: min(470px, 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 35px 25px;
+      text-align: center;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #fff2fb, #f4ddff);
+      color: #4a175d;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 65px #ff79df65;
+      animation: appear .35s ease;
+    }
+
+    .modal-card::before {
+      content: "✦  ✧  ✦  ✧  ✦";
+      display: block;
+      color: #e052a0;
+      letter-spacing: 12px;
+    }
+
+    .modal-emoji { font-size: 68px; margin: 10px 0; }
+
+    .modal-card h2 {
+      color: #a31b76;
+      font-size: 29px;
+      margin: 8px 0;
+    }
+
+    .modal-card p { line-height: 1.8; }
+
+    .confetti {
+      position: fixed;
+      z-index: 20;
+      top: -20px;
+      width: 9px;
+      height: 14px;
+      pointer-events: none;
+      animation: confettiFall 2.8s linear forwards;
+    }
+
+    @keyframes confettiFall {
+      to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+
+    @media (max-width: 600px) {
+      .topbar { padding: 16px; }
+      .brand { font-size: 15px; }
+      .hero { padding-top: 25px; }
+      .subtitle { font-size: 15px; }
+      .gift-stage { min-height: 300px; }
+      .gift { transform-origin: center; }
+      .section-title { font-size: 22px; }
+      .cake { font-size: 75px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+
+  <header class="topbar">
+    <div class="brand">🎂 BIRTHDAY MAGIC</div>
+    <a class="home" href="index.html">← Back to Home</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="tag">✨ A LITTLE MAGIC JUST FOR YOU ✨</span>
+      <h1 id="mainHeading">Your Magical Surprise Awaits!</h1>
+      <p class="subtitle">
+        A special day deserves a little extra magic.
+        Open the gifts, make a wish, and discover your surprises!
+      </p>
+      <div class="recipient" id="recipient">
+        🎁 Someone special deserves the best!
+      </div>
+    </section>
+
+    <h2 class="section-title">🎁 Catch Your Birthday Gifts</h2>
+    <p class="hint">Tap any falling gift to unlock a little happiness ✨</p>
+
+    <section class="gift-stage" id="giftStage" aria-label="Falling birthday gifts"></section>
+
+    <div class="controls">
+      <button class="btn" id="newGiftBtn">🎁 Bring Me a Gift</button>
+      <button class="btn secondary" id="wishBtn">✨ Make a Wish</button>
+      <button class="btn secondary" id="letterBtn">💌 Open My Letter</button>
+    </div>
+
+    <section class="cake-card">
+      <div class="cake" id="cake">🎂</div>
+      <h2>A Cake Full of Wishes!</h2>
+      <p>Close your eyes, make a wish, and let the birthday magic begin.</p>
+      <button class="btn" id="cakeBtn">🕯️ Blow the Candles</button>
+
+      <div class="letter" id="letter">
+        <strong>Dear <span id="letterName">Birthday Star</span>, 💖</strong>
+        <p>
+          Today is a reminder of how special you are.
+          May your life be filled with laughter, beautiful memories,
+          exciting adventures, and people who make you smile.
+          May every new day bring you a reason to feel happy.
+        </p>
+        <p>Keep shining, keep smiling, and never stop dreaming! 🌟</p>
+        <strong>With lots of love,</strong><br>
+        <span id="senderName">Someone who cares about you</span> 💝
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Made with 💖, magic ✨, and lots of birthday wishes.
+  </footer>
+
+  <div class="modal" id="giftModal" role="dialog"
+       aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-emoji" id="modalEmoji">🎁</div>
+      <h2 id="modalTitle">A Special Surprise!</h2>
+      <p id="modalMessage">You deserve all the happiness in the world!</p>
+      <button class="btn" id="closeModalBtn">💖 Keep Smiling</button>
+    </div>
+  </div>
+
+  <script src="surprise.js"></script>
+</body>
+</html>
+```
